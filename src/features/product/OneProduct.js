@@ -4,12 +4,10 @@ import "./productA.css";
 import ProductDetails from "./ProductDetails";
 import { addtoCart, isInCart } from "../order/orderSlice";
 import { useState, useEffect } from "react";
-
-
-
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import SmallBasket from "../order/SmallBasket";
+import './oneProduct.css'
 
 const OneProduct = ({ one }) => {
   let user = useSelector((state) => state.user.currentUser);
@@ -20,38 +18,35 @@ const OneProduct = ({ one }) => {
     dispatch(addtoCart(one));
     setOpenSnackbar(true);
     setShowBasket(true);
-
   };
+
   const handleCloseSnackbar = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     } setOpenSnackbar(false);
   }
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowBasket(false);
     }, 4000); // 10 seconds in milliseconds
-
     return () => clearTimeout(timer);
-  }, []);
+  }, [showBasket]);
+  
   return (
 
     <div className="product">
-
       <Link to={"" + one.id}><img src={one.imgUrl} alt={one.name} />  </Link>
       <h3>{one.name}</h3>
       <p>Price: {one.price} </p>
-      {/* <Link to={"" + one.id}>הצג פרטים</Link> */}
-
+     
       {user && user.role == "ADMIN" ? (
         <>
           <input type="button" value="עריכה" />
           <input type="button" value="מחיקה" />
         </>
       ) :
-
-        // <input type="button" value="הוספה לסל" onClick={()=>(one)}/>
-
+     // <input type="button" value="הוספה לסל" onClick={()=>(one)}/>
         <button id="addButton" disabled={!isInCart(one.id)} onClick={handleAddToCart}>Add to Cart</button>
       }
       <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleCloseSnackbar}>

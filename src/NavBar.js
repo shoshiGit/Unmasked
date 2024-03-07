@@ -95,12 +95,6 @@ const NavBar = () => {
               <Link to="/Basket">Basket</Link>
             </li>
 
-            <Link to="/register">
-              {/* <button className="btn">Register</button> */}
-            </Link>
-            <Link to="/login">
-              {/* <button className="btn btn__login">Login</button> */}
-            </Link>
           </ul>
         </nav>
 <div className="header__content_end">
@@ -112,10 +106,31 @@ const NavBar = () => {
             <AiOutlineClose onClick={menuToggleHandler} />
           )}
           </div>
-          
-          <NavLink to=""  style={{color:"#7d5656"}}><MDBIcon style={{padding:" 0.75rem 0.5rem "}} far icon="heart" /></NavLink>
-        <NavLink to="basket" style={{color:"#7d5656"}}><MDBIcon style={{padding:" 0.75rem 0.5rem "}}  icon="shopping-cart" /></NavLink>
- <MDBIcon style={{padding:" 0.75rem 0.5rem "}}  onClick={handleOpenUserMenu} far icon="user" />
+          { !menuOpen && size.width > 768 ? (
+  <>
+    <NavLink to="/wis" style={{ color: "#7d5656" }}>
+      <MDBIcon style={{ padding: "0.75rem 0.5rem" }} far icon="heart" />
+    </NavLink>
+    <NavLink to="basket" style={{ color: "#7d5656" }}>
+      <MDBIcon
+        style={{ padding: "0.75rem 0.5rem" }}
+        icon="shopping-cart"
+      />
+    </NavLink>
+    <MDBIcon
+      style={{ padding: "0.75rem 0.5rem" }}
+      onClick={handleOpenUserMenu}
+      far
+      icon="user"
+    />
+  </>
+) : (
+  <div></div>
+)}
+
+
+
+
  <Box sx={{ flexGrow: 0 }}>
 
             <Menu

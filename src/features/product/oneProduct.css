@@ -1,0 +1,11 @@
+.small-basket-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50%; /* Adjust the width as needed */
+    height: 100vh;
+    background-color: #ffffff; /* Adjust the background color as needed */
+    border-left: 1px solid #ccc; /* Optional: Add a border for separation */
+    overflow-y: auto;
+    z-index: 1000;
+  }

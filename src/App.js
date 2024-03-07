@@ -4,12 +4,12 @@ import { useState } from "react";
 import ProductList from "./features/product/ProductList";
 import NavBar from "./NavBar";
 import ProductDetails from "./features/product/ProductDetails";
-import OneProduct from "./features/product/OneProduct";
 import SignUp from "./features/user/SingUp";
 import Login from "./features/user/Login";
 import SmallBasket from "./features/order/SmallBasket";
 import Basket from "./features/order/Basket";
 import OrderDetails from "./features/order/OrderDetails"
+import Wishlist from "./features/order/Wishlist";
 //npm i mdb-react-ui-kit
 //npm i @fortawesome/fontawesome-free
 //npm i --save mdb-react-ui-kit 
@@ -34,6 +34,7 @@ if(currentUser){
         <Route path="basket" element={<Basket />} />
         <Route path="SmallBasket" element={<SmallBasket />} />
         <Route path="orderDetails" element={<OrderDetails/>}/>
+        <Route path="wishlist" element={<Wishlist/>}/>
         {/* <Route  path="*" element={<Home/>}/> */}
       </Routes>
     </>
