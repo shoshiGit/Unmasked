@@ -8,3 +8,6 @@ export const getAllProductsFromServer=()=>{
 export const getProductById= (id) => {
     return axios.get(`${baseUrl}/${id}`);
 }
+export const deleteP= (id) => {
+    return axios.delete(`${baseUrl}/${id}`);
+}

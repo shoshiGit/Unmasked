@@ -7,25 +7,26 @@ import { addtoCart, isInCart } from "../order/orderSlice";
 
 const ProductDetails = () => {
 
- const [productD,setProductD]=useState([]);
+  const [productD, setProductD] = useState([]);
   let { id } = useParams();
   let navigate = useNavigate();
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     getProductById(id)
       .then((res) => {
         setProductD(res.data);
       })
       .catch((err) => {
-        alert("הבאת הנתונים מהשרת נכשלה");
+        alert("Failed to bring data from server.");
         console.log(err);
       });
-    })
-    const dispatch = useDispatch();
-
-    const handleAddToCart = () => {
-      dispatch(addtoCart(productD));
-    };
+  })
   
+  const handleAddToCart = () => {
+    dispatch(addtoCart(productD));
+  };
+
 
   return (
     <div
@@ -42,14 +43,12 @@ const ProductDetails = () => {
     >
       <div style={{ backgroundColor: "white", width: "50%" }}>
         details {id}
-      <p>{ productD["name"]}</p>
-    
-        </div>
-      
-      <button onClick={()=>{navigate(-1
-        )}}>back</button>
-        <button disabled={!isInCart(productD.id)} onClick={handleAddToCart}>Add to Cart</button>
-       
+        <p>{productD["name"]}</p>
+      </div>
+      <button onClick={() => {
+        navigate(-1)
+      }}>back</button>
+      <button disabled={!isInCart(productD.id)} onClick={handleAddToCart}>Add to Cart</button>
     </div>
   );
 };

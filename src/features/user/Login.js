@@ -4,35 +4,37 @@ import { useDispatch } from "react-redux";
 import { setCurrentUser } from "./userSlice";
 import './login.css'
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 //npm install styled-components
 
 const Login = () => {
-  let { register, handleSubmit } = useForm();
   let dispatch = useDispatch();
+  const navigate = useNavigate();
+  let { register, handleSubmit } = useForm();
+  
   const [click, setClick] = useState(false);
 
   const save = (data) => {
     login(data)
       .then((res) => {
-        alert("Logged in ");
         dispatch(setCurrentUser(res.data));
+        navigate("/list")
       })
       .catch((err) => {
-        alert("שגיאה", err.response);
+        alert("You dont have an account", err.response);
         console.log(err.response);
+        navigate("/register");
       });
   };
   
   const handleClick = () => setClick(!click);
 
   return ( <>
-    
-
     <form onSubmit={handleSubmit(save)} className={`form ${click ? "clicked" : ""}`}>
       <label>שם</label>
       <input {...register("name")} type="text" />
       <label>סיסמא</label>
-      <input {...register("password")} type="password" />
+      <input  {...register("password") } type="password"/>
       <button type="submit">Submit</button>
     </form>
   </>

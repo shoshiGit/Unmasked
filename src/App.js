@@ -10,6 +10,7 @@ import SmallBasket from "./features/order/SmallBasket";
 import Basket from "./features/order/Basket";
 import OrderDetails from "./features/order/OrderDetails"
 import Wishlist from "./features/order/Wishlist";
+import Home from "./Home";
 //npm i mdb-react-ui-kit
 //npm i @fortawesome/fontawesome-free
 //npm i --save mdb-react-ui-kit 
@@ -23,9 +24,7 @@ if(currentUser){
   return (
     <>
       <NavBar />
- 
-      <Routes>
-
+       <Routes>
       <Route path="list" element={<ProductList />}>
           <Route path=":id" one element={<ProductDetails />} />
         </Route>
@@ -35,7 +34,7 @@ if(currentUser){
         <Route path="SmallBasket" element={<SmallBasket />} />
         <Route path="orderDetails" element={<OrderDetails/>}/>
         <Route path="wishlist" element={<Wishlist/>}/>
-        {/* <Route  path="*" element={<Home/>}/> */}
+        <Route  path="*" element={<Home/>}/>
       </Routes>
     </>
   );
