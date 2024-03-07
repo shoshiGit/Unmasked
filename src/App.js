@@ -16,6 +16,7 @@ import Home from "./Home";
 //npm i --save mdb-react-ui-kit 
 //npm install @mui/material @emotion/react @emotion/styled      
 //npm install @mui/icons-material      
+//npm install bootstrap
 function App() {
 const [currentUser,setCurrentUser]=useState('');
 if(currentUser){

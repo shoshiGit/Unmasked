@@ -7,7 +7,6 @@ import { AiOutlineClose } from "react-icons/ai";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { MDBIcon } from "mdb-react-ui-kit";
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { logOut } from "./features/user/userSlice";

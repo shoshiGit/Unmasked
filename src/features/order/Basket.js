@@ -12,8 +12,8 @@ import { MDBBtn,    MDBCard, MDBCardBody,MDBCardHeader, MDBCardImage, MDBCol,MDB
     const dispatch = useDispatch();
     const basketItems = useSelector((state) => state.order.basket);
     const orders = useSelector((state) => state.order.orders);
-    const [totalAmount, setTotalAmount] = useState(0);
-    const [totalItems, setTotalItems] = useState(0); // Added state for total items
+    const [totalAmount, setTotalAmount] = useState();
+    const [totalItems, setTotalItems] = useState(); // Added state for total items
     const handleUpdateQuantity = (itemId, newQuantity) => {
         // Dispatch the updateQuantity action
         dispatch(updateQuantity({ itemId, newQuantity }));
@@ -28,6 +28,17 @@ import { MDBBtn,    MDBCard, MDBCardBody,MDBCardHeader, MDBCardImage, MDBCol,MDB
         setTotalItems(items); // Update total items state
         return total;
       };
+      useEffect(() => {
+        let total = 0;
+        let items = 0;
+        basketItems.forEach((item) => {
+           total += item.price * item.qty;
+           items += item.qty;
+        });
+        setTotalItems(items);
+        setTotalAmount(total);
+     }, [basketItems]);
+     
     
     const handleAddToCart = (item) => {
         dispatch(addtoCart(item));
@@ -41,11 +52,7 @@ import { MDBBtn,    MDBCard, MDBCardBody,MDBCardHeader, MDBCardImage, MDBCol,MDB
                 console.log("error fetching orders", error);
             });
     }, [dispatch]);
-  
-    useEffect(() => {
-        // Recalculate total amount whenever basketItems change
-        setTotalAmount(calculateTotal());
-      }, [basketItems]);
+
     return (
         <section className="h-100 gradient-custom">
             <MDBContainer className="py-5 h-100">
