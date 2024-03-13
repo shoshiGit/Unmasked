@@ -6,5 +6,6 @@ export const store = configureStore({
   reducer: {
     user: userSlice,
     order: orderSlice,
+    
   },
 });

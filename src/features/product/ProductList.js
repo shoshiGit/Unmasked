@@ -17,6 +17,15 @@ const ProductList = () => {
         console.log(err);
       });
   }, []);
+  const handleOnDelete = () => {
+    getAllProductsFromServer().then((res) => {
+      setArr(res.data);
+    })
+    .catch((err) => {
+      alert("Failed to update product list");
+      console.log(err);
+    });
+  }
 
   return (
     <>
@@ -24,7 +33,7 @@ const ProductList = () => {
         <h1>Products</h1>
         <div className="container">
           {arr.map((item) => (
-            <OneProduct className={item} key={item.id} one={item} />
+            <OneProduct className={item} onDelete={handleOnDelete} key={item.id} one={item} />
           ))}
           <Outlet />
         </div>

@@ -28,6 +28,10 @@ const orderSlice = createSlice({
     setOrders: (state, action) => {
       return { ...state, orders: action.payload };
    },
+   emptyBasket: (state, action) => {
+    state.basket = [[],{...action.payload}]
+       
+},
    
     updateQuantity: (state, action) => {
       const { itemId, newQuantity } = action.payload;
@@ -40,5 +44,5 @@ const orderSlice = createSlice({
   },
 });
 
-export const { addtoCart, setOrders, isInCart, updateQuantity } = orderSlice.actions;
+export const { emptyBasket,addtoCart, setOrders, isInCart, updateQuantity } = orderSlice.actions;
 export default orderSlice.reducer;

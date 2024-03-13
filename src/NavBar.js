@@ -81,10 +81,9 @@ const NavBar = () => {
             )}
           </div>
           
-          {!menuOpen && size.width > 700 ? (<>
-            <NavLink to="/wis" style={{ color: "#7d5656" }}>
+            {/* <NavLink to="/wis" style={{ color: "#7d5656" }}>
               <MDBIcon style={{ padding: "0.75rem 0.5rem" }} far icon="heart" />
-            </NavLink>
+            </NavLink> */}
             <NavLink to="basket" style={{ color: "#7d5656" }}>
               <MDBIcon style={{ padding: "0.75rem 0.5rem" }} icon="shopping-cart" />
             </NavLink>
@@ -94,9 +93,7 @@ const NavBar = () => {
               far
               icon="user"
             />
-          </>) : (
-            <div></div>
-          )}
+
           <Box sx={{ flexGrow: 0 }}>
             <Menu
               sx={{ mt: '40px' }} id="menu-appbar"

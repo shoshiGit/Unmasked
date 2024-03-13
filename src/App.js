@@ -11,6 +11,7 @@ import Basket from "./features/order/Basket";
 import OrderDetails from "./features/order/OrderDetails"
 import Wishlist from "./features/order/Wishlist";
 import Home from "./Home";
+import UpdateProduct from "./features/product/UpdateProduct";
 //npm i mdb-react-ui-kit
 //npm i @fortawesome/fontawesome-free
 //npm i --save mdb-react-ui-kit 
@@ -26,6 +27,7 @@ if(currentUser){
     <>
       <NavBar />
        <Routes>
+<Route path="update-product" element={<UpdateProduct/>}/>
       <Route path="list" element={<ProductList />}>
           <Route path=":id" one element={<ProductDetails />} />
         </Route>
@@ -40,6 +42,4 @@ if(currentUser){
     </>
   );
 }
-
 export default App;
-

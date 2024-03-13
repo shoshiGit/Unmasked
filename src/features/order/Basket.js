@@ -6,7 +6,6 @@ import { MDBBtn,    MDBCard, MDBCardBody,MDBCardHeader, MDBCardImage, MDBCol,MDB
   import { Link } from "react-router-dom";
   import { addtoCart, setOrders, updateQuantity } from "./orderSlice";
   import { getOrdersFromServer } from "./orderApi";
-  import './Basket.css';
   export default function Basket() {
   
     const dispatch = useDispatch();
