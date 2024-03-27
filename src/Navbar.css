@@ -1,3 +1,28 @@
+/* Navbar.css */
+.announcementBar {
+  color: white;
+  background-color: black;
+  padding: 0.1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+}
+
+.slide-text {
+  animation: slideText 15s linear infinite; /* Adjust duration and timing as needed */
+}
+
+@keyframes slideText {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
 @media (min-width: 48em) {
     .header {
      margin: 0;

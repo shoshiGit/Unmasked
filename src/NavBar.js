@@ -49,16 +49,21 @@ const NavBar = () => {
 
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  
-  const handleOpenNavMenu = (event) => { setAnchorElNav(event.currentTarget);};
-  const handleOpenUserMenu = (event) => { setAnchorElUser(event.currentTarget);};
-  const handleCloseNavMenu = () => { setAnchorElNav(null);};
-  const handleCloseUserMenu = () => { setAnchorElUser(null);};
+
+  const handleOpenNavMenu = (event) => { setAnchorElNav(event.currentTarget); };
+  const handleOpenUserMenu = (event) => { setAnchorElUser(event.currentTarget); };
+  const handleCloseNavMenu = () => { setAnchorElNav(null); };
+  const handleCloseUserMenu = () => { setAnchorElUser(null); };
 
   return (<>
+       <div className="announcementBar">
+      <div className="slide-text">
+        Purim Flashsale | Limited time offer      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Purim Flashsale | Limited time offer 
+      </div>
+    </div>
     <header className="header gradient-custom">
       <div className="header__content">
-        <Link to="/" className="header__content__logo">UNMASKED</Link>
+        <Link to="/" className="header__content__logo"><img style={{ margin: 0, padding: 0, maxInlineSize: "90px" }} src="logo.png" /></Link>
         <nav className={`${menuOpen && size.width < 768 ? "header__content__nav isMenu" : "header__content__nav"}`}>
           <ul>
             <li>
@@ -80,19 +85,19 @@ const NavBar = () => {
               <AiOutlineClose onClick={menuToggleHandler} />
             )}
           </div>
-          
-            {/* <NavLink to="/wis" style={{ color: "#7d5656" }}>
+
+          {/* <NavLink to="/wis" style={{ color: "#7d5656" }}>
               <MDBIcon style={{ padding: "0.75rem 0.5rem" }} far icon="heart" />
             </NavLink> */}
-            <NavLink to="basket" style={{ color: "#7d5656" }}>
-              <MDBIcon style={{ padding: "0.75rem 0.5rem" }} icon="shopping-cart" />
-            </NavLink>
-            <MDBIcon
-              style={{ padding: "0.75rem 0.5rem" }}
-              onClick={handleOpenUserMenu}
-              far
-              icon="user"
-            />
+          <NavLink to="basket" style={{ color: "#7d5656" }}>
+            <MDBIcon style={{ padding: "0.75rem 0.5rem" }} icon="shopping-cart" />
+          </NavLink>
+          <MDBIcon
+            style={{ padding: "0.75rem 0.5rem" }}
+            onClick={handleOpenUserMenu}
+            far
+            icon="user"
+          />
 
           <Box sx={{ flexGrow: 0 }}>
             <Menu
@@ -105,13 +110,13 @@ const NavBar = () => {
               {
                 user != null ?
                   settings.map((setting) => (
-                    <MenuItem key={setting} onClick={() => handleButtonClick(setting)}>                  
-                     {setting}
+                    <MenuItem key={setting} onClick={() => handleButtonClick(setting)}>
+                      {setting}
                     </MenuItem>
                   )) :
                   sighnInSettings.map((setting) => (
-                    <MenuItem key={setting} onClick={()=>handleButtonClick(setting)}>
-                     <Link to={setting == 'Sign In' ? 'register' : 'login'}>{setting}</Link>
+                    <MenuItem key={setting} onClick={() => handleButtonClick(setting)}>
+                      <Link to={setting == 'Sign In' ? 'register' : 'login'}>{setting}</Link>
                     </MenuItem>
                   ))
               }

@@ -29,6 +29,7 @@ const ProductList = () => {
 
   return (
     <>
+
       <section className="ProductPage">
         <h1>Products</h1>
         <div className="container">
