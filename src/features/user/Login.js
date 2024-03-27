@@ -18,6 +18,7 @@ const Login = () => {
     login(data)
       .then((res) => {
         dispatch(setCurrentUser(res.data));
+        localStorage.setItem('user', JSON.stringify(res.data));
         navigate("/list")
       })
       .catch((err) => {

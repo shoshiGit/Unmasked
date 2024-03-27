@@ -15,6 +15,11 @@ const NavBar = () => {
   let user = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(user));
+  }, [user]);
+
   const settings = ['My Profile', 'Account', 'My Orders', 'Sign Out'];
   const sighnInSettings = ['Sign In', 'Log In'];
   const [menuOpen, setMenuOpen] = useState(false);
