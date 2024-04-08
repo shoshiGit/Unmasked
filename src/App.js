@@ -12,6 +12,7 @@ import OrderDetails from "./features/order/OrderDetails"
 import Wishlist from "./features/order/Wishlist";
 import Home from "./Home";
 import UpdateProduct from "./features/product/UpdateProduct";
+import AddProduct from "./features/product/AddProduct";
 //npm i mdb-react-ui-kit
 //npm i @fortawesome/fontawesome-free
 //npm i --save mdb-react-ui-kit 
@@ -37,6 +38,7 @@ if(currentUser){
         <Route path="SmallBasket" element={<SmallBasket />} />
         <Route path="orderDetails" element={<OrderDetails/>}/>
         <Route path="wishlist" element={<Wishlist/>}/>
+        <Route path="/addProduct" element={<AddProduct/>}/>
         <Route  path="*" element={<Home/>}/>
       </Routes>
     </>

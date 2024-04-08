@@ -11,3 +11,8 @@ export const getProductById= (id) => {
 export const deleteP= (id) => {
     return axios.delete(`${baseUrl}/${id}`);
 }
+export const addProduct=async(product)=>{
+    console.log(product);
+    return await axios.post(`${baseUrl}`,product);
+}
+

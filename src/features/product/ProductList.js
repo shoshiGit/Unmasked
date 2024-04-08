@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { getAllProductsFromServer } from "./productApi";
 import OneProduct from "./OneProduct";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import './productA.css';
+import { useSelector } from "react-redux";
 
 const ProductList = () => {
+  const navigate = useNavigate();
   let [arr, setArr] = useState([]);
+  let user = useSelector((state) => state.user.currentUser);
 
   useEffect(() => {
     getAllProductsFromServer()
@@ -38,6 +41,9 @@ const ProductList = () => {
           ))}
           <Outlet />
         </div>
+        {user && user.role == "ADMIN" ? (
+          <button onClick={()=>navigate("/addProduct")} >Add Product</button>
+        ):<div></div>}
       </section>
     </>
   );

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { MDBBtn, MDBContainer, MDBCard, MDBCardBody, MDBCol, MDBRow, MDBInput, MDBCheckbox, MDBIcon } from 'mdb-react-ui-kit';
 import { useDispatch } from 'react-redux';
 import { sighnUp } from './userApi';
 import { setCurrentUser } from './userSlice';
@@ -47,11 +46,10 @@ function SingUp() {
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
-                          <input type="text" id="form3Example1c" class="form-control"name='name' onChange={change} />
+                          <input type="text" id="form3Example1c" class="form-control" name='name' onChange={change} />
                           <label class="form-label" for="form3Example1c">Your Name</label>
                         </div>
                       </div>
-
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
@@ -63,7 +61,7 @@ function SingUp() {
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
-                          <input type="password" id="form3Example4c" class="form-control" name="password"  onChange={change} />
+                          <input type="password" id="form3Example4c" class="form-control" name="password" onChange={change} />
                           <label class="form-label" for="form3Example4c" >Password</label>
                         </div>
                       </div>
@@ -71,7 +69,7 @@ function SingUp() {
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
-                          <input type="password" id="form3Example4cd" class="form-control"  />
+                          <input type="password" id="form3Example4cd" class="form-control" />
                           <label class="form-label" for="form3Example4cd">Repeat your password</label>
                         </div>
                       </div>
@@ -86,8 +84,8 @@ function SingUp() {
                       <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                         <button onClick={save} type="button" class="btn btn-primary btn-lg">Register</button>
                       </div>
-                      <p class="text-center text-muted mt-5 mb-0">Have already an account? <span 
-                    style={{cursor:"pointer"}}class="fw-bold text-body cursor-pointer" onClick={()=>navigate("/login")}><u>Login here</u></span></p>
+                      <p class="text-center text-muted mt-5 mb-0">Have already an account? <span
+                        style={{ cursor: "pointer" }} class="fw-bold text-body cursor-pointer" onClick={() => navigate("/login")}><u>Login here</u></span></p>
                     </form>
                   </div>
 

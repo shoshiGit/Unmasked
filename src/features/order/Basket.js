@@ -1,55 +1,38 @@
-import { MDBBtn,    MDBCard, MDBCardBody,MDBCardHeader, MDBCardImage, MDBCol,MDBContainer, MDBIcon, MDBInput, MDBListGroup, MDBListGroupItem,
-    MDBRipple, MDBRow, MDBTooltip, MDBTypography,
-  } from "mdb-react-ui-kit";
-  import React, { useEffect, useState } from "react";
-  import { useDispatch, useSelector } from "react-redux";
-  import { Link } from "react-router-dom";
-  import { addtoCart, setOrders, updateQuantity } from "./orderSlice";
-  import { getOrdersFromServer } from "./orderApi";
-  export default function Basket() {
-  
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { setOrders, updateQuantity } from "./orderSlice";
+import { getOrdersFromServer } from "./orderApi";
+import { MDBBtn, MDBCard, MDBCardBody, MDBCardHeader, MDBCardImage, MDBCol, MDBContainer, MDBIcon, MDBInput, MDBListGroup, MDBListGroupItem, MDBRipple, MDBRow, MDBTooltip, MDBTypography } from "mdb-react-ui-kit";
+
+export default function Basket() {
+
     const dispatch = useDispatch();
     const basketItems = useSelector((state) => state.order.basket);
-    const orders = useSelector((state) => state.order.orders);
     const [totalAmount, setTotalAmount] = useState();
     const [totalItems, setTotalItems] = useState(); // Added state for total items
+
     const handleUpdateQuantity = (itemId, newQuantity) => {
-        // Dispatch the updateQuantity action
-        dispatch(updateQuantity({ itemId, newQuantity }));
+        dispatch(updateQuantity({ itemId, newQuantity }));   // Dispatch the updateQuantity action
     };
-    const calculateTotal = () => {
-        let total = 0;
-        let items = 0; // Count total items
-        basketItems.forEach((item) => {
-          total += item.price * item.qty;
-          items += item.qty;
-        });
-        setTotalItems(items); // Update total items state
-        return total;
-      };
-      useEffect(() => {
+
+    useEffect(() => {
         let total = 0;
         let items = 0;
         basketItems.forEach((item) => {
-           total += item.price * item.qty;
-           items += item.qty;
+            total += item.price * item.qty;
+            items += item.qty;
         });
         setTotalItems(items);
         setTotalAmount(total);
-     }, [basketItems]);
-     
-    
-    const handleAddToCart = (item) => {
-        dispatch(addtoCart(item));
-    };
-  
+    }, [basketItems]);
+
     useEffect(() => {
         getOrdersFromServer().then((response) => {
             dispatch(setOrders(response.data));
-        })
-            .catch((error) => {
-                console.log("error fetching orders", error);
-            });
+        }).catch((error) => {
+            console.log("error fetching orders", error);
+        });
     }, [dispatch]);
 
     return (
@@ -59,11 +42,10 @@ import { MDBBtn,    MDBCard, MDBCardBody,MDBCardHeader, MDBCardImage, MDBCol,MDB
                     <MDBCol md="8">
                         <MDBTypography tag="h5">
                             <Link to="/list" className="text-body">
-                                <MDBIcon fas icon="long-arrow-alt-left me-2" /> Continue
-                                shopping
+                                <MDBIcon fas icon="long-arrow-alt-left me-2" /> Continue shopping
                             </Link>
                         </MDBTypography>
-  
+
                         <hr />
                         <MDBCard className="mb-4">
                             <MDBCardHeader className="py-3">
@@ -89,9 +71,7 @@ import { MDBBtn,    MDBCard, MDBCardBody,MDBCardHeader, MDBCardImage, MDBCol,MDB
                                             </p>
                                             <p>Color: blue</p>
                                             <p>Size: M</p>
-  
-                                            <MDBTooltip wrapperProps={{ size: "sm" }} wrapperClass="me-1 mb-2"
-                                                title="Remove item">
+                                            <MDBTooltip wrapperProps={{ size: "sm" }} wrapperClass="me-1 mb-2" title="Remove item">
                                                 <MDBIcon fas icon="trash" />
                                             </MDBTooltip>
                                             <MDBTooltip wrapperProps={{ size: "sm", color: "danger" }} wrapperClass="me-1 mb-2"
@@ -100,44 +80,35 @@ import { MDBBtn,    MDBCard, MDBCardBody,MDBCardHeader, MDBCardImage, MDBCol,MDB
                                             </MDBTooltip>
                                         </MDBCol>
                                         <MDBCol lg="4" md="6" className="mb-4 mb-lg-0">
-                      <div className="d-flex mb-4" style={{ maxWidth: "300px" }}>
-                        <MDBBtn
-                          className="px-3 me-2"
-                          onClick={() => handleUpdateQuantity(item.id, item.qty - 1)}
-                        >
-                          <MDBIcon fas icon="minus" />
-                        </MDBBtn>
-                        <MDBInput
-                          value={item.qty}
-                          defaultValue={1}
-                          min={0}
-                          type="number"
-                          label="Quantity"
-                          onChange={(e) =>
-                            handleUpdateQuantity(item.id, parseInt(e.target.value, 10))
-                          }
-                        />
-                        <MDBBtn
-                          onClick={() => handleUpdateQuantity(item.id, item.qty + 1)}
-                          className="px-3 ms-2"
-                        >
-                          <MDBIcon fas icon="plus" />
-                        </MDBBtn>
-                      </div>
-                      <p className="text-start text-md-center">
-                        {/* <strong>${item.price}</strong> */}
-                        <strong>${item.price * item.qty}</strong>
-                      </p>
-                    </MDBCol>
+                                            <div className="d-flex mb-4" style={{ maxWidth: "300px" }}>
+                                                <MDBBtn className="px-3 me-2"
+                                                    onClick={() => handleUpdateQuantity(item.id, item.qty - 1)}
+                                                >
+                                                    <MDBIcon fas icon="minus" />
+                                                </MDBBtn>
+                                                <MDBInput
+                                                    value={item.qty}
+                                                    defaultValue={1}
+                                                    min={0}
+                                                    type="number"
+                                                    label="Quantity"
+                                                    onChange={(e) =>
+                                                        handleUpdateQuantity(item.id, parseInt(e.target.value, 10))
+                                                    }
+                                                />
+                                                <MDBBtn className="px-3 ms-2" onClick={() => handleUpdateQuantity(item.id, item.qty + 1)}>
+                                                    <MDBIcon fas icon="plus" />
+                                                </MDBBtn>
+                                            </div>
+                                            <p className="text-start text-md-center">
+                                                <strong>${item.price * item.qty}</strong>
+                                            </p>
+                                        </MDBCol>
                                         <hr className={`my-${item.name}`} />
                                     </MDBRow>
-  
                                 ))}
-                                
-                               
                             </MDBCardBody>
                         </MDBCard>
-  
                         <MDBCard className="mb-4">
                             <MDBCardBody>
                                 <p>
@@ -146,7 +117,7 @@ import { MDBBtn,    MDBCard, MDBCardBody,MDBCardHeader, MDBCardImage, MDBCol,MDB
                                 <p className="mb-0">12.10.2020 - 14.10.2020</p>
                             </MDBCardBody>
                         </MDBCard>
-  
+
                         <MDBCard className="mb-4 mb-lg-0">
                             <MDBCardBody>
                                 <p>
@@ -183,25 +154,21 @@ import { MDBBtn,    MDBCard, MDBCardBody,MDBCardHeader, MDBCardImage, MDBCol,MDB
                                     </MDBListGroupItem>
                                     <MDBListGroupItem className="d-flex justify-content-between align-items-center px-0">
                                         Shipping
-                                        <span>Gratis</span>
+                                        <span>$0</span>
                                     </MDBListGroupItem>
                                     <MDBListGroupItem
                                         className="d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                                         <div>
                                             <strong>Total amount</strong>
-                                            <strong>
-                                                <p className="mb-0">(including VAT)</p>
-                                            </strong>
+                                            {/* <strong><p className="mb-0">(including VAT)</p></strong> */}
                                         </div>
-                                        <span>
-                                            <strong>${totalAmount}</strong>
-                                        </span>
+                                        <span><strong>${totalAmount}</strong></span>
                                     </MDBListGroupItem>
                                 </MDBListGroup>
-  <Link to="/orderDetails" className="text-white text-decoration-none">
-                                <MDBBtn  block size="lg">
-                                Go to checkout
-                                </MDBBtn></Link>
+                                <Link to="/orderDetails" className="text-white text-decoration-none">
+                                    <MDBBtn block size="lg">
+                                        Go to checkout
+                                    </MDBBtn></Link>
                             </MDBCardBody>
                         </MDBCard>
                     </MDBCol>
@@ -209,4 +176,4 @@ import { MDBBtn,    MDBCard, MDBCardBody,MDBCardHeader, MDBCardImage, MDBCol,MDB
             </MDBContainer>
         </section>
     );
-  }
+}
